@@ -10,7 +10,7 @@ from io import BytesIO
 
 import requests
 from PIL import Image
-from mutagen.id3 import APIC, ID3, TALB, TBPM, TCON, TDRC, TIT2, TPE1, TPE2
+from mutagen.id3 import APIC, ID3, TALB, TBPM, TCON, TDRC, TIT2, TPE1, TPE2, TRCK
 
 # Define the URL of the YouTube video
 URL = "INSERT YOUTUBE URL HERE"
@@ -42,6 +42,8 @@ ALBUM_ARTIST = TPE2(encoding=3, text="INSERT ALBUM ARTIST HERE")
 GENRE = TCON(encoding=3, text="INSERT GENRE HERE")
 YEAR = TDRC(encoding=3, text="INSERT YEAR HERE")
 BPM = TBPM(encoding=3, text="INSERT BPM HERE")
+TRACKNUMBER = TRCK(encoding=3, text="INSERT TRACK NUMBER HERE/TOTAL NUMBER OF TRACKS HERE")
+
 
 # Create an ID3 tag if it doesn't exist
 AUDIO = ID3("output.mp3")
@@ -54,6 +56,7 @@ AUDIO.add(ALBUM_ARTIST)
 AUDIO.add(GENRE)
 AUDIO.add(YEAR)
 AUDIO.add(BPM)
+AUDIO.add(TRACKNUMBER)
 
 # Add album art
 with open('album_art.jpg', 'rb') as albumart:
